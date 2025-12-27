@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: radial-gradient(circle at top, #0b1620, #05080f);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+/* Game container */
+.game-wrapper {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(14px);
+    padding: 32px 36px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.7);
+}
+
+h1 {
+    letter-spacing: 3px;
+    margin-bottom: 6px;
+}
+
+#status {
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+/* Board */
+.board-wrapper {
+    position: relative;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 90px);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+/* Glass tiles */
+.cell {
+    width: 90px;
+    height: 90px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.14);
+    backdrop-filter: blur(10px);
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.3),
+        0 12px 30px rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.cell:hover {
+    transform: translateY(-3px);
+}
+
+/* Neon X & O */
+.cell.X {
+    color: #3dfbff;
+    text-shadow: 0 0 8px #3dfbff, 0 0 18px rgba(61,251,255,0.6);
+}
+
+.cell.O {
+    color: #ff5ad9;
+    text-shadow: 0 0 8px #ff5ad9, 0 0 18px rgba(255,90,217,0.6);
+}
+
+/* Strike line */
+.strike {
+    position: absolute;
+    background: currentColor;
+    height: 4px;
+    border-radius: 8px;
+    box-shadow: 0 0 12px currentColor;
+    opacity: 0;
+    transform-origin: center;
+}
+
+.strike.show {
+    opacity: 1;
+}
+
+/* Restart button */
+button {
+    padding: 12px 28px;
+    border-radius: 30px;
+    border: none;
+    background: rgba(255,255,255,0.25);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    transition: 0.3s;
+}
+
+button:hover {
+    background: rgba(255,255,255,0.4);
+}
+
+/* Confetti */
+#confetti-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 999;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 14px;
+    border-radius: 3px;
+    opacity: 0.95;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translate(var(--x-end), 110vh) rotate(720deg);
+    }
+}
